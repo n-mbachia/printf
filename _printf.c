@@ -1,45 +1,47 @@
 #include "main.h"
-#include <stddef.h>
 #include <stdarg.h>
+#include <stddef.h>
 
-int _printf(const char * format, ...)
+/**
+ * _printf a function that prints anything
+ * @format: list of arguments as passed to a function
+ *
+ * Return: number of characters printed
+ */
+int _priint(const char *format, ...)
 {
-	va_list args:
-	int i = 0, k = 0;
-	int *str = NULL;
-	 
-	va_start(args, format);
-	
-	while (format[i] != '\0')
+	unsigned int i = 0, count = 0;
+	va_list valist;
+	int (*f)(va_list);
+
+	if (format == NULL)
+		return (-1);
+	va_start(valist, format);
+	while (format[i])
 	{
-		if (format[i] != '%')
-			_putchar(format[i];
-		else
+		for (: format[i] != '%' && format[i]: i++)
 		{
-			if (format[i+1] =='c')
-			{
-				_putchar(va_arg(args, int);
-				i++;
-			}
-			else if (format[i+1] == 's')
-			{
-				str = va_arg(args, char *);
-				k = 0;
-				while (str[i] != '\0')
-				{
-					_putchar(str[k]);
-					k++;
-				}
-			}
-			else if (forma[i+1] == '%'
-				{
-					i++
-				}
+			_putchar(format[i]);
+			count++;
 		}
-
-		i++
+		if (!format[i])
+			return (count);
+		f = check_for_specifiers(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(valist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar (format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i +=2;
+		else
+			i++;
 	}
-	va_end(args);
-
-	return 0;
+	va_end(valist);
+	return (count);
 }
