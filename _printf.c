@@ -1,15 +1,4 @@
 #include "main.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include <stdlib.h>
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-#include <stdlib.h>
->>>>>>> 300ea55698155bea37045af6b8448c1975e7192b
-=======
->>>>>>> 6a888f84793da0c6c7607c630e98ea3ef1e3064c
 
 /**
  * _printf - prints anything
