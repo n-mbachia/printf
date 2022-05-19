@@ -3,14 +3,17 @@
 
 _printf
 
-The printf function sends formatted output to stdout. A custom _printf() for learning purposes was developed by cohort 6# students - Obichukwu Uchenna ,- Isaac Neuwelt.
+The printf function sends formatted output to stdout. A custom _printf() for learning purposes was developed by cohort 6# students - Mbachia N and Cantong J.
 
 _printf() function format string is a character string, beginning and ending in its initial shift state, if any. These arguments are placed using the percentage '%' operator
 
 
 ## Authors
-- MBACHIA NG'ETHE
-- CANTONG JUNIOR
+
+- [@Mbachia Ng'ethe](https://www.github.com/n-mbachia)
+- [@Cantong](https://www.github.com/cantong93)
+
+
 ## Acknowledgements
 
  - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
