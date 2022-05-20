@@ -1,49 +1,83 @@
 #include "main.h"
 
 /**
- * _printf - prints anything
- * @format: the format string
+ * convert - converter function, a clone of itoa
+ * @num: number
+ * @base: base
+ * @flags: argument flags
+ * @params: paramater struct
  *
- * Return: number of bytes printed
+ * Return: string
  */
-int _printf(const char *format, ...)
+char *convert(long int num, int base, int flags, params_t *params)
 {
-	int sum = 0;
-	va_list ap;
-	char *p, *start;
-	params_t params = PARAMS_INIT;
+	static char *array;
+	static char buffer[50];
+	char sign = 0;
+	char *ptr;
+	unsigned long n = num;
+	(void)params;
 
-	va_start(ap, format);
-
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = (char *)format; *p; p++)
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		init_params(&params, ap);
-		if (*p != '%')
-		{
-			sum += _putchar(*p);
-			continue;
-		}
-		start = p;
-		p++;
-		while (get_flag(p, &params)) /* while char at p is flag char */
-		{
-			p++; /* next char */
-		}
-		p = get_width(p, &params, ap);
-		p = get_precision(p, &params, ap);
-		if (get_modifier(p, &params))
-			p++;
-		if (!get_specifier(p))
-			sum += print_from_to(start, p,
-				params.l_modifier || params.h_modifier ? p - 1 : 0);
-		else
-			sum += get_print_func(p, ap, &params);
+		n = -num;
+		sign = '-';
+
 	}
-	_putchar(BUF_FLUSH);
-	va_end(ap);
-	return (sum);
+	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buffer[49];
+	*ptr = '\0';
+
+	do	{
+		*--ptr = array[n % base];
+		n /= base;
+	} while (n != 0);
+
+	if (sign)
+		*--ptr = sign;
+	return (ptr);
+}
+
+/**
+ * print_unsigned - prints unsigned integer numbers
+ * @ap: argument pointer
+ * @params: the parameters struct
+ *
+ * Return: bytes printed
+ */
+int print_unsigned(va_list ap, params_t *params)
+{
+	unsigned long l;
+
+	if (params->l_modifier)
+		l = (unsigned long)va_arg(ap, unsigned long);
+	else if (params->h_modifier)
+		l = (unsigned short int)va_arg(ap, unsigned int);
+	else
+		l = (unsigned int)va_arg(ap, unsigned int);
+	params->unsign = 1;
+	return (print_number(convert(l, 10, CONVERT_UNSIGNED, params), params));
+}
+
+
+
+/**
+ * print_address - prints address
+ * @ap: argument pointer
+ * @params: the parameters struct
+ *
+ * Return: bytes printed
+ */
+int print_address(va_list ap, params_t *params)
+{
+	unsigned long int n = va_arg(ap, unsigned long int);
+	char *str;
+
+	if (!n)
+		return (_puts("(nil)"));
+
+	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
+	*--str = 'x';
+	*--str = '0';
+	return (print_number(str, params));
 }
