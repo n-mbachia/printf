@@ -1,6 +1,6 @@
 .TH man 3 "18 may 2022" "1.0" "_printf man page"
 .SH NAME
-_printf \- prints formmatted string
+_printf \ - prints formmatted string
 .SH SYNOPSIS
 int printf(const char *format, ...);
 .SH DESCRIPTION
@@ -12,7 +12,7 @@ characters or format specificers starting with '%' character and followed
 by a subsequent argument to be passed after format
 .SS conversion specificers
 Each '%' will be followed by a character to indicate the type of specificer
-Here are all the specificers handles by this function:
+Here are all the specificers handles by this function :
 c  used to specify a single character
 s specifies a string of characters
 d, i intergers are specified using these characters
