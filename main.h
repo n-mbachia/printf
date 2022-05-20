@@ -111,7 +111,7 @@ int print_number_left_shift(char *str, params_t *params);
 /* params.c module */
 void init_params(params_t *params, va_list ap);
 
-/* string_fields.c modoule */
+/* string-fields.c modoule */
 char *get_precision(char *p, params_t *params, va_list ap);
 
 /* _prinf.c module */
