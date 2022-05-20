@@ -1,4 +1,4 @@
-.TH _PRINTF 17 "May 2022"
+.TH _PRINTF 19 "May 2022"
 
 .SH NAME
 .B _printf\fR \- formatted output conversion
@@ -256,5 +256,4 @@ int main(void)
 printf(3)
 
 .SH AUTHOR
-mbachia ngethe
-cantong jr
+Mbachia N & Cantong J
