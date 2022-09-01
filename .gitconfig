@@ -1,0 +1,7 @@
+[user]
+	name = n-mbachia
+	email = ndmbachia@outlook.com
+[core]
+	editor = /Applications/Sublime\\ Text.app/Contents/MacOS/Sublime\\ Text
+[init]
+	defaultBranch = main
